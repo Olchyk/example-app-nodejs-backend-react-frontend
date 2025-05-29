@@ -1,15 +1,24 @@
+const path = require('path');
+
 module.exports = {
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				use: {
-					loader: '@sucrase/webpack-loader',
-					options: {
-						transforms: ['jsx']
-					}
-				}
-			}
-		]
-	}
+  entry: './src/client/index.js',
+  output: {
+    path: path.resolve(__dirname, 'static'),
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: '@sucrase/webpack-loader',
+          options: {
+            transforms: ['jsx'],
+          },
+        },
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  mode: 'development',
 };
